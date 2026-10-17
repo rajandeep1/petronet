@@ -6,6 +6,7 @@ export interface Store {
   province: string;
   postal_code: string | null;
   phone: string | null;
+  location_type: 'Petro-Canada' | 'A&W' | 'Petro Pass';
   created_at: string;
 }
 

@@ -64,7 +64,7 @@ export function JobDetailPage({ jobId, navigate }: JobDetailPageProps) {
             <h1 className="text-3xl sm:text-4xl font-extrabold mb-3">{job.title}</h1>
             <div className="flex flex-wrap gap-4 text-red-100">
               <span className="flex items-center gap-1.5 text-sm">
-                <MapPin className="w-4 h-4" /> {job.store?.address}, {job.store?.city}, {job.store?.province}
+                <MapPin className="w-4 h-4" /> {job.store?.name}, {job.store?.city}, {job.store?.province}
               </span>
               {job.salary_range && (
                 <span className="flex items-center gap-1.5 text-sm">
@@ -92,7 +92,7 @@ export function JobDetailPage({ jobId, navigate }: JobDetailPageProps) {
             <Section title="Location Details" icon={<MapPin className="w-5 h-5" />}>
               <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                 <p className="font-semibold text-black">{job.store?.name}</p>
-                <p className="text-gray-600 text-sm mt-1">{job.store?.address}</p>
+                <p className="text-gray-600 text-sm mt-1">{job.store?.name}</p>
                 <p className="text-gray-600 text-sm">{job.store?.city}, {job.store?.province} {job.store?.postal_code}</p>
                 {job.store?.phone && <p className="text-gray-600 text-sm mt-1">Phone: {job.store.phone}</p>}
               </div>

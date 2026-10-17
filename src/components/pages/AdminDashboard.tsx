@@ -170,7 +170,7 @@ function OverviewTab({
               <div key={app.id} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
                 <div>
                   <p className="font-semibold text-black text-sm">{app.full_name}</p>
-                  <p className="text-sm text-gray-500">{app.job?.title} - {app.job?.store?.address}</p>
+                  <p className="text-sm text-gray-500">{app.job?.title} - {app.job?.store?.name}</p>
                 </div>
                 <StatusBadge status={app.status} />
               </div>
@@ -248,7 +248,7 @@ function ApplicationsTab({ applications, onRefresh }: { applications: Applicatio
                     <p><span className="font-semibold">Email:</span> {app.email}</p>
                     <p><span className="font-semibold">Phone:</span> {app.phone}</p>
                     <p><span className="font-semibold">Position:</span> {app.job?.title}</p>
-                    <p><span className="font-semibold">Store:</span> {app.job?.store?.address}</p>
+                    <p><span className="font-semibold">Store:</span> {app.job?.store?.name}</p>
                     {app.address && <p><span className="font-semibold">Address:</span> {app.address}</p>}
                     {app.availability && <p><span className="font-semibold">Availability:</span> {app.availability}</p>}
                   </div>
@@ -356,7 +356,7 @@ function JobsTab({ jobs, stores, onRefresh }: { jobs: Job[]; stores: Store[]; on
                   </span>
                 </div>
                 <p className="text-sm text-gray-500 flex items-center gap-1.5 mb-1">
-                  <MapPin className="w-4 h-4" /> {job.store?.address}, Winnipeg
+                  <MapPin className="w-4 h-4" /> {job.store?.name}, {job.store?.city}
                 </p>
                 <p className="text-sm text-gray-600 line-clamp-2">{job.description}</p>
                 {job.salary_range && <p className="text-sm font-semibold text-gray-700 mt-1">{job.salary_range}</p>}
@@ -448,7 +448,7 @@ function JobForm({
             <label className="text-sm font-semibold text-black mb-1.5 block">Store Location *</label>
             <select value={form.store_id} onChange={e => setForm({ ...form, store_id: e.target.value })}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 outline-none">
-              {stores.map(s => <option key={s.id} value={s.id}>{s.address}</option>)}
+              {stores.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
             </select>
           </div>
           <div>
@@ -534,7 +534,8 @@ function StoresTab({ stores, jobs, onRefresh }: { stores: Store[]; jobs: Job[]; 
                     <MapPin className="w-5 h-5 text-[#E30613]" />
                   </div>
                   <div>
-                    <p className="font-bold text-black text-sm">{store.address}</p>
+                    <p className="font-bold text-black text-sm">{store.name}</p>
+                    <p className="text-xs font-semibold text-[#E30613] mt-0.5">{store.location_type}</p>
                     <p className="text-sm text-gray-500">{store.city}, {store.province} {store.postal_code}</p>
                     {store.phone && <p className="text-sm text-gray-500 mt-1">{store.phone}</p>}
                     <p className="text-xs text-gray-400 mt-2">{storeJobs.length} job posting{storeJobs.length !== 1 ? 's' : ''}</p>
