@@ -344,7 +344,7 @@ function ApplicantDashboard({ navigate, email }: { navigate: (page: Page) => voi
                       </div>
                       <div className="flex items-center text-sm text-gray-500 mt-1">
                         <MapPin className="w-4 h-4 mr-1" />
-                        {app.job?.store?.address}, Winnipeg
+                        {app.job?.store?.name}, {app.job?.store?.city}
                       </div>
                       {app.experience && (
                         <p className="text-sm text-gray-600 mt-2 line-clamp-2">{app.experience}</p>
@@ -491,7 +491,7 @@ function NewApplicationForm({
             >
               <option value="">All Stores (Winnipeg)</option>
               {stores.map(s => (
-                <option key={s.id} value={s.id}>{s.address}, {s.postal_code}</option>
+                <option key={s.id} value={s.id}>{s.name} — {s.city}</option>
               ))}
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -512,7 +512,7 @@ function NewApplicationForm({
               <option value="">Select a position...</option>
               {availableJobs.map(j => (
                 <option key={j.id} value={j.id}>
-                  {j.title} ({j.employment_type}) - {j.store?.address}
+                  {j.title} ({j.employment_type}) - {j.store?.name}
                 </option>
               ))}
             </select>

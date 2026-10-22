@@ -39,7 +39,7 @@ export function HomePage({ navigate }: HomePageProps) {
     ? jobs.filter(j =>
         j.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         j.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (j.store?.address ?? '').toLowerCase().includes(searchQuery.toLowerCase())
+        (j.store?.name ?? '').toLowerCase().includes(searchQuery.toLowerCase())
       )
     : jobs;
 
@@ -83,7 +83,7 @@ export function HomePage({ navigate }: HomePageProps) {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <Stat value={jobs.length} label="Open Jobs" />
-                  <Stat value={stores.length} label="Winnipeg Stores" />
+                  <Stat value={stores.length} label="Authorized Locations" />
                   <Stat value="4" label="Job Types" />
                 </div>
                 <div className="mt-6 space-y-3">
@@ -132,7 +132,7 @@ export function HomePage({ navigate }: HomePageProps) {
               >
                 <option value="all">All Locations</option>
                 {stores.map(s => (
-                  <option key={s.id} value={s.id}>{s.address}</option>
+                  <option key={s.id} value={s.id}>{s.name}</option>
                 ))}
               </select>
             </div>
@@ -186,7 +186,7 @@ export function HomePage({ navigate }: HomePageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-black mb-2">Our Winnipeg Store Locations</h2>
-            <p className="text-gray-600">8 Petro-Canada locations across Winnipeg, Manitoba.</p>
+            <p className="text-gray-600">Authorized Petro-Canada, A&W, and Petro Pass hiring locations.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {stores.map(store => (
@@ -196,7 +196,8 @@ export function HomePage({ navigate }: HomePageProps) {
                     <MapPin className="w-5 h-5 text-[#E30613]" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-semibold text-black text-sm">{store.address}</p>
+                    <p className="font-semibold text-black text-sm">{store.name}</p>
+                    <p className="text-xs font-semibold text-[#E30613] mt-0.5">{store.location_type}</p>
                     <p className="text-sm text-gray-500">{store.city}, {store.province} {store.postal_code}</p>
                     {store.phone && <p className="text-sm text-gray-500 mt-1">{store.phone}</p>}
                   </div>
@@ -244,7 +245,7 @@ function JobCard({ job, navigate }: { job: Job; navigate: (page: Page) => void }
         <h3 className="text-xl font-bold text-black mb-2">{job.title}</h3>
         <div className="flex items-center text-sm text-gray-500 mb-3">
           <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
-          {job.store?.address}, {job.store?.city}
+          {job.store?.name}, {job.store?.city}
         </div>
         <p className="text-sm text-gray-600 line-clamp-3 mb-4">{job.description}</p>
         {job.salary_range && (

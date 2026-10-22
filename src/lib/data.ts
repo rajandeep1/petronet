@@ -11,7 +11,7 @@ export async function fetchStores(): Promise<Store[]> {
   return data ?? [];
 }
 
-export async function createStore(input: Omit<Store, 'id' | 'created_at' | 'name' | 'city' | 'province'> & { name?: string }): Promise<Store> {
+export async function createStore(input: Omit<Store, 'id' | 'created_at' | 'name' | 'city' | 'province' | 'location_type'> & { name?: string; location_type?: Store['location_type'] }): Promise<Store> {
   const { data, error } = await supabase
     .from('stores')
     .insert({
@@ -19,6 +19,7 @@ export async function createStore(input: Omit<Store, 'id' | 'created_at' | 'name
       address: input.address,
       city: 'Winnipeg',
       province: 'MB',
+      location_type: input.location_type || 'Petro-Canada',
       postal_code: input.postal_code,
       phone: input.phone,
     })

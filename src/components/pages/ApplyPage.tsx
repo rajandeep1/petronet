@@ -131,7 +131,7 @@ export function ApplyPage({ jobId, navigate }: ApplyPageProps) {
                 <Briefcase className="w-4 h-4" /> {job.employment_type}
               </span>
               <span className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4" /> {job.store?.address}, Winnipeg
+                <MapPin className="w-4 h-4" /> {job.store?.name}, {job.store?.city}
               </span>
             </div>
           </div>

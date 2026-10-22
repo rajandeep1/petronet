@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="bg-white rounded-lg p-3 inline-block mb-4">
-              <Logo size={32} textColor="#000000" />
+              <Logo size={32} />
             </div>
             <p className="text-sm text-gray-400">
               Live by the Leaf. We're not just Petro. We're Petro-Canada.
@@ -25,8 +25,8 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Winnipeg Locations</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>8 store locations across Winnipeg</li>
-              <li>Part-time & Full-time positions</li>
+              <li>12 authorized hiring locations</li>
+              <li>Petro-Canada, A&W & Petro Pass roles</li>
               <li>Equal opportunity employer</li>
             </ul>
           </div>
